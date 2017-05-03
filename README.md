@@ -24,3 +24,27 @@ If you're developing a project X, changing common-frontend and want to use your 
 * commit changes
 * add tag ```git tag v1.x.x```
 * push on server ```git push origin master --tags```
+
+### Extending a user ###
+
+common-frontend provides you with the common methods for working with a user. If you'd like to extend the user by, say, adding new properties to them, you can create an ExtendedUserActions in your project to add the new properties.
+
+Let's say we want to add a new property to a User: sandwichPreference.
+
+* create an ExtendedUserActions in your project
+* add an ```updateProfile(profile)``` function to ```ExtendedUserActions``` 
+* we'll call this action, passing the entire User with their sandwichPreference whenever we want to update the user's sandwichPreference:
+
+```
+updateProfile(profile) {
+  ApiClient.updateProfile({ userProfile: profile }).then((data) => {
+    UserActions.setExtendedUser(data.session);
+  });
+}
+```
+
+ApiClient.updateProfile does a PUT on user_profiles. The Rails API sets the user, including the sandwichPreference.
+
+We'll also need to modify the API's sessions resource to return this property.
+
+The sandwichPreference is now available at UserStore.currentUser.sandwichPreference, keeping the common code clean and upgradeable.
