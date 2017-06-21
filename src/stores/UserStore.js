@@ -26,6 +26,8 @@ export default class UserStore {
       this.setCurrentUser(JSON.parse(currentUser))
   }
 
+  static displayName = 'UserStore'
+
   setCurrentUser(data) {
     localStorage.setItem('currentUser', JSON.stringify(data))
     ApiHelper.setAuthHeader(data.accessToken)
