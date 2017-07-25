@@ -28,11 +28,16 @@ export default class RefundDialog extends React.Component {
     }
   }
 
-  onValidSubmit(data) {
-    data["user_id"] = this.props.userId
+  onValidSubmit(refundParams) {
+    refundParams["user_id"] = this.props.userId
     this.setState({loading: true})
-    UserAdminActions.makeRefund(data).then((data) => {
-      this.setState({loading: false, refundOkOpen: true})
+    UserAdminActions.makeRefund(refundParams).then((response) => {
+      if (response.data.error_message)
+        this.setState({refundError: response.data.error_message})
+      else
+        this.setState({refundOkOpen: true})
+
+      this.setState({loading: false})
     }).catch((error) => {
       this.setState({refundError: error.response.data, loading: false})
     })
