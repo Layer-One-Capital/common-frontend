@@ -110,7 +110,9 @@ export default class Admin extends React.Component {
                     { result.first_charge_date ? moment(result.first_charge_date).format('MMMM Do YYYY') : null }
                 </TableRowColumn>
                 <TableRowColumn style={{ width: 100 }}>
-                  <a href="javascript:void(0)"><FontIcon onClick={this.handleRefundDialogOpen.bind(this, result.id)} className="material-icons">money_off</FontIcon></a>
+                  { result.shopify_domain != null &&
+                    <a href="javascript:void(0)"><FontIcon onClick={this.handleRefundDialogOpen.bind(this, result.id)} className="material-icons">money_off</FontIcon></a>
+                  }
                 </TableRowColumn>
               </TableRow>
             )
