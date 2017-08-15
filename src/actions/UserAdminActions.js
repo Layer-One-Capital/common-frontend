@@ -26,4 +26,8 @@ export default class UserAdminActions {
       actions.setLoading(false)
     })
   }
+
+  makeRefund(params) {
+    return UserAdminSource.makeRefund(params)
+  }
 }
