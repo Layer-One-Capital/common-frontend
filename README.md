@@ -8,7 +8,7 @@ This package goes hand-in-hand with the [React/Rails Shopify app](https://github
 
 Reference the repo and a specific version in your package.json like this:
 
-``` "pr-common": "https://github.com/pemberton-rank/common-frontend.git#v1.1.9" ```
+``` "common-frontend": "https://github.com/pemberton-rank/common-frontend.git#v1.1.9" ```
 
 ### Changes ###
 
