@@ -12,6 +12,8 @@ export default class UserAdminStore {
     this.bindActions(UserAdminActions)
   }
 
+  static displayName = 'UserAdminStore'
+
   setSearchResults(searchResults) {
     this.setState({ searchResults })
   }

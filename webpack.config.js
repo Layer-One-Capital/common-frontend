@@ -44,6 +44,8 @@ module.exports = {
     'axios': 'axios',
     'react-dom': 'react-dom',
     'react-router': 'react-router',
-    'material-ui': 'material-ui'
+    'material-ui': 'material-ui',
+    'formsy-material-ui': 'formsy-material-ui',
+    'formsy-react': 'formsy-react'
   }
 };
