@@ -85,7 +85,7 @@ export default class Admin extends React.Component {
             <TableHeaderColumn>Email</TableHeaderColumn>
             <TableHeaderColumn>Shopify domain</TableHeaderColumn>
             <TableHeaderColumn>Website</TableHeaderColumn>
-            <TableHeaderColumn style={{ width: 170 }}>Plus</TableHeaderColumn>
+            <TableHeaderColumn style={{ width: 170 }}>Active Charge</TableHeaderColumn>
             <TableHeaderColumn style={{ width: 170 }}>First upgraded</TableHeaderColumn>
             <TableHeaderColumn style={{ width: 100 }}></TableHeaderColumn>
           </TableRow>
@@ -104,7 +104,7 @@ export default class Admin extends React.Component {
                     <a href={`${result.website}`} target='_new'>{result.website}</a>
                 </TableRowColumn>
                 <TableRowColumn style={{ width: 170 }}>
-                    { result.plus === true ? <strong>Plus</strong> : result.first_charge_date ? 'free (cancelled Plus)' : 'free' }
+                    { result.active_charge === true ? <strong>Yes</strong> : result.first_charge_date ? 'free (cancelled)' : 'free' }
                 </TableRowColumn>
                 <TableRowColumn style={{ width: 170 }}>
                     { result.first_charge_date ? moment(result.first_charge_date).format('MMMM Do YYYY') : null }
