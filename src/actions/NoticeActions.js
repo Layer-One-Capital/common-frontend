@@ -1,31 +1,22 @@
 import alt from 'flux'
+import { createActions } from 'alt-utils/lib/decorators'
 
-class NoticeActions {
+@createActions(alt)
+export default class NoticeActions {
   constructor() {
     this.generateActions(
       'setNotice',
-      'clearNotices',
-      'setConfirmNavigation',
-      'unsetConfirmNavigation',
-      'unsetAllConfirmNavigation'
+      'clearNotices'
     );
   }
 
   setGenericError() {
-    this.actions.setNotice({ message: 'An error occurred. If the error persists email hello@blimpon.com' })
-  }
-
-  confirmNavigation(key, message) {
-    this.actions.setConfirmNavigation({ key: key, message: message });
-  }
-
-  clearConfirmNavigation(key) {
-    this.actions.unsetConfirmNavigation(key);
-  }
-
-  clearAllConfirmNavigation() {
-    this.actions.unsetAllConfirmNavigation();
+    const actions = this.actions || this // NOTE: this is because we mix alt versions between Blimpon and v3, so the 'actions' reference is different in each
+    
+    actions.setNotice({ 
+      message: `Error: An error has occurred. Please refresh the page to try again. If the error persists email ${config.supportEmail || "help@pluginseo.com"}`, 
+      actionText: 'Refresh',
+      onAction: () => {location.reload();}
+    })
   }
 }
-
-module.exports = alt.createActions(NoticeActions);
