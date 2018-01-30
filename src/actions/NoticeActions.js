@@ -1,6 +1,8 @@
 import alt from 'flux'
+import { createActions } from 'alt-utils/lib/decorators'
 
-class NoticeActions {
+@createActions(alt)
+export default class NoticeActions {
   constructor() {
     this.generateActions(
       'setNotice',
@@ -12,20 +14,22 @@ class NoticeActions {
   }
 
   setGenericError() {
-    this.actions.setNotice({ message: 'An error occurred. If the error persists email hello@blimpon.com' })
+    this.setNotice({ 
+      message: `Error: An error has occurred. Please refresh the page to try again. If the error persists email ${config.supportEmail || "help@pluginseo.com"}`, 
+      actionText: 'Refresh',
+      onAction: () => {location.reload();}
+    })
   }
 
   confirmNavigation(key, message) {
-    this.actions.setConfirmNavigation({ key: key, message: message });
+    this.setConfirmNavigation({ key: key, message: message });
   }
 
   clearConfirmNavigation(key) {
-    this.actions.unsetConfirmNavigation(key);
+    this.unsetConfirmNavigation(key);
   }
 
   clearAllConfirmNavigation() {
-    this.actions.unsetAllConfirmNavigation();
+    this.unsetAllConfirmNavigation();
   }
 }
-
-module.exports = alt.createActions(NoticeActions);
