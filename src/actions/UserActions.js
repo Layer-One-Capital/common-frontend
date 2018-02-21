@@ -55,6 +55,7 @@ export default class UserActions {
     const actions = this.actions || this
     actions.unsetCurrentUser()
     if(onSignedOut) onSignedOut()
+    return true
   }
 
   signup(params, onAuthenticate, onSignedUp) {
