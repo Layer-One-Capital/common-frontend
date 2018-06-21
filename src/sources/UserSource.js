@@ -24,6 +24,12 @@ const UserSource = {
     return axios.put(ApiHelper.apiUrl(`passwords/${token}`), {
       'change_password': params
     })
+  },
+
+  validatePromotion: function(code) {
+    return axios.put(ApiHelper.apiUrl('promotions/validate'), {
+      'code': code
+    }).then(res => res.data)
   }
 }
 

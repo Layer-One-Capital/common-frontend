@@ -148,6 +148,9 @@ export default class UserActions {
     return true
   }
 
+  validatePromotion(code) {
+    return UserSource.validatePromotion(code);
+  }
   // ExtendedUserActions calls its own API method to update the DB with extended user properties,
   //  then calls this method to update the entire user in local storage and the UserStore
   setExtendedUser(user) {
