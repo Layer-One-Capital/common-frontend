@@ -32,7 +32,8 @@ export default class Promotion extends React.Component {
                 <div>
                   Valid promotion buy
                   <form action = { ApiHelper.apiUrl('/charges') } method = "post">
-                    <input type="hidden" id="access_token" name="access_token" value={this.props.currentUser}/>
+                    <input type="hidden" id="access_token" name="access_token" value={this.context.currentUser.accessToken}/>
+                    <input type="hidden" id="promotion_code" name="promotion_code" value={this.props.code}/>
                     <input type="submit" value="Buy with the promotion" />
                   </form>
                 </div>
