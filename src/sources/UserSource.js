@@ -27,7 +27,7 @@ const UserSource = {
   },
 
   validatePromotion: function(code) {
-    return axios.put(ApiHelper.apiUrl('promotions/validate'), {
+    return axios.post(ApiHelper.apiUrl('promotions/validate'), {
       'code': code
     }).then(res => res.data)
   }
