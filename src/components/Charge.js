@@ -11,8 +11,8 @@ export default class Charge extends React.Component {
   static propTypes = {
     onClose: React.PropTypes.func.isRequired,
     event: React.PropTypes.string.isRequired,
-    support_email: React.PropTypes.string.isRequired,
-    success_destiny: React.PropTypes.string.isRequired
+    supportEmail: React.PropTypes.string.isRequired,
+    successDestiny: React.PropTypes.string.isRequired
   }
 
   constructor(props) {
@@ -37,25 +37,25 @@ export default class Charge extends React.Component {
         message: (
           <div>
             <h2>
-                You&apos;ll now be taken to { this.props.success_destiny }
+                You&apos;ll now be taken to { this.props.successDestiny }
             </h2>
           </div>
         ),
-        actionButtonLabel: `Go to ${ this.props.success_destiny }`
+        actionButtonLabel: `Go to ${ this.props.successDestiny }`
       })
       UserActions.upgradeToPlus(this.context.currentUser)
     } else if (this.state.event === 'failed') {
       this.setState({
         title: 'Upgrade failed',
-        message: `An error occurred. You have not been charged. Please email ${ this.props.support_email } with this error message`,
-        actionButtonLabel: `I\'ve emailed ${ this.props.support_email }`
+        message: `An error occurred. You have not been charged. Please email ${ this.props.supportEmail } with this error message`,
+        actionButtonLabel: `I\'ve emailed ${ this.props.supportEmail }`
       })
     } else if (this.state.event === 'declined') {
       this.setState({
         title: 'Upgrade declined',
         message: (
           <div>
-            <p>Charge declined. Have any questions before upgrading? Email us at <a href={`mailto:${ this.props.support_email }`}>{ this.props.support_email }</a> and we&apos;ll be happy to answer them</p>
+            <p>Charge declined. Have any questions before upgrading? Email us at <a href={`mailto:${ this.props.supportEmail }`}>{ this.props.supportEmail }</a> and we&apos;ll be happy to answer them</p>
           </div>
         ),
         actionButtonLabel: 'Close'
