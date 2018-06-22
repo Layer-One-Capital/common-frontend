@@ -56,7 +56,7 @@ export default class UserStore {
   unsetCurrentUser() {
     localStorage.removeItem('currentUser')
     ApiHelper.clearAuthHeader()
-    this.state.currentUser = null
+    this.state.currentUser = { accestokenToken : null }
     this.state.authenticated = false
     Analytics.reset()
   }
