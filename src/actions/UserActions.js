@@ -139,6 +139,15 @@ export default class UserActions {
     })
   }
 
+  upgradeToPlus(user) {
+    const actions = this.actions || this
+
+    Analytics.track('Upgraded to Plus')
+    user.plus = true // reflect what has happened on the server without refreshing the whole user
+    actions.setCurrentUser(user)
+    return true
+  }
+
   // ExtendedUserActions calls its own API method to update the DB with extended user properties,
   //  then calls this method to update the entire user in local storage and the UserStore
   setExtendedUser(user) {
