@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { NoticeActions } from 'actions'
+import { Analytics } from 'utils'
 
 // Add a response interceptor
 axios.interceptors.response.use(function (response) {
@@ -11,6 +12,8 @@ axios.interceptors.response.use(function (response) {
     if (window.Rollbar) {
       window.Rollbar.error(`Network error: ${error.status}`, error)
     }
+    
+    Analytics.track('Error Shown')
     // 422 errors should be handled by the individual handlers, everything else we can assume is not handled
     NoticeActions.setGenericError();
   }

@@ -18,6 +18,10 @@ If you're developing a project X, changing common-frontend and want to use your 
 * run common-frontend using: ```npm run build```
 * run project X as normal
 
+When finished dev use command
+
+* ``` npm unlink /path/to/your/common-frontend```
+
 ### Versioning ###
 
 * update package.json file with current version
@@ -32,7 +36,7 @@ common-frontend provides you with the common methods for working with a user. If
 Let's say we want to add a new property to a User: sandwichPreference.
 
 * create an ExtendedUserActions in your project
-* add an ```updateProfile(profile)``` function to ```ExtendedUserActions``` 
+* add an ```updateProfile(profile)``` function to ```ExtendedUserActions```
 * we'll call this action, passing the entire User with their sandwichPreference whenever we want to update the user's sandwichPreference:
 
 ```
