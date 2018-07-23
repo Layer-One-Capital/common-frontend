@@ -21,6 +21,7 @@ If you're developing a project X, changing common-frontend and want to use your 
 ### Versioning ###
 
 * update package.json file with current version
+* run ```npm install``` to update the package-lock.json
 * commit changes
 * add tag ```git tag v1.x.x```
 * push on server ```git push origin master --tags```
@@ -32,7 +33,7 @@ common-frontend provides you with the common methods for working with a user. If
 Let's say we want to add a new property to a User: sandwichPreference.
 
 * create an ExtendedUserActions in your project
-* add an ```updateProfile(profile)``` function to ```ExtendedUserActions``` 
+* add an ```updateProfile(profile)``` function to ```ExtendedUserActions```
 * we'll call this action, passing the entire User with their sandwichPreference whenever we want to update the user's sandwichPreference:
 
 ```
