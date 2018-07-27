@@ -20,11 +20,11 @@ If you're developing a project X, changing common-frontend and want to use your 
 
 **Often forgotten:** Whenever you make a change in your local common-frontend, run ```npm link /path/to/your/common-frontend``` again for project X to pick up the change.
 
-# Debugging #
+### Debugging ###
 
 All of the code from your local common-frontend will be in your bundle.js with a source map, so available in your browser's developer console. Setting breakpoints etc. will work as normal. If it doesn't, you're doing something wrong and dev will be a lot harder!
 
-# Versioning #
+### Versioning ###
 
 A numbered version is created when your common-frontend pull request is approved and the branch is merged into master.
 
