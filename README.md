@@ -14,9 +14,9 @@ Reference the repo and a specific version in your package.json like this:
 
 If you're developing a project X, changing common-frontend and want to use your local version:
 
-* in project X run: ```npm link /path/to/your/common-frontend``` like ```npm link ../../pemberton-rank/common-frontend```
-* build common-frontend using: ```npm run build```
-* run project X as normal with ```npm start run```
+* in the project X client folder run: ```npm link /path/to/your/common-frontend``` like ```npm link ../../pemberton-rank/common-frontend```
+* build common-frontend using in its root folder: ```npm run build```
+* run project X as normal from the client folder: ```npm start run```
 
 **Often forgotten:** Whenever you make a change in your local common-frontend, run ```npm link /path/to/your/common-frontend``` again for project X to pick up the change.
 
