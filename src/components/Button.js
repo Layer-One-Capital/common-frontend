@@ -23,6 +23,10 @@ export default class Button extends React.Component {
         return 'transparent'
       case 'secondaryLight':
         return 'transparent'
+      case 'cta':
+        return this.context.muiTheme.palette.orange;
+      case 'ctaSmall':
+        return this.context.muiTheme.palette.orange;
     }
   }
 
@@ -34,6 +38,10 @@ export default class Button extends React.Component {
       case 'secondary':
         return this.context.muiTheme.palette.primary1Color;
       case 'secondaryLight':
+        return this.context.muiTheme.palette.white;
+      case 'cta':
+        return this.context.muiTheme.palette.white;
+      case 'ctaSmall':
         return this.context.muiTheme.palette.white;
     }
   }
@@ -49,22 +57,30 @@ export default class Button extends React.Component {
         return this.context.muiTheme.palette.primary1Color;
       case 'secondaryLight':
         return this.context.muiTheme.palette.white;
+      case 'cta':
+        return this.context.muiTheme.palette.orange;
+      case 'ctaSmall':
+        return this.context.muiTheme.palette.orange;
+    }
+  }
+
+  fontSize() {
+    const { buttonType } = this.props
+    switch (buttonType) {
+      case 'cta':
+        return 14;
+      default: 
+        return 12;
     }
   }
 
   render() {
     return(
-      <RaisedButton
-        label={this.props.label}
-        href={this.props.href}
-        disabled={this.props.disabled}
-        type={this.props.type}
-        onTouchTap={this.props.onTouchTap}
-        className={this.props.className}
+      <RaisedButton {...this.props}
         backgroundColor={this.backgroundColor()}
         buttonStyle={{borderRadius: 6, border: `solid 1px ${this.borderColor()}`}}
         labelColor={this.labelColor()}
-        labelStyle={{fontFamily: 'Montserrat', letterSpacing: 0.3}}
+        labelStyle={{fontFamily: 'Montserrat', letterSpacing: 0.3, fontWeight: 400, fontSize: this.fontSize()}}
         style={{borderRadius: 6, backgroundColor: 'transparent', minWidth: 0}}
       />
     )
