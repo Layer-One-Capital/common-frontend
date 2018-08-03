@@ -24,6 +24,10 @@ If you're developing a project X, changing common-frontend and want to use your 
 
 All of the code from your local common-frontend will be in your bundle.js with a source map, so available in your browser's developer console. Setting breakpoints etc. will work as normal. If it doesn't, you're doing something wrong and dev will be a lot harder!
 
+When finished dev use command
+
+* ``` npm unlink /path/to/your/common-frontend```
+
 ### Versioning ###
 
 A numbered version is created when your common-frontend pull request is approved and the branch is merged into master.
@@ -52,7 +56,7 @@ common-frontend provides you with the common methods for working with a user. If
 Let's say we want to add a new property to a User: sandwichPreference.
 
 * create an ExtendedUserActions in your project
-* add an ```updateProfile(profile)``` function to ```ExtendedUserActions``` 
+* add an ```updateProfile(profile)``` function to ```ExtendedUserActions```
 * we'll call this action, passing the entire User with their sandwichPreference whenever we want to update the user's sandwichPreference:
 
 ```
