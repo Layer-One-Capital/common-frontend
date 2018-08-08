@@ -36,6 +36,7 @@ The development process is:
 * when you are finished with all of the work needed for common-frontend, create a pull request for it
 * when that pull request is approved and merged an admin of common-frontend will:
   * up the version number in common-frontend's package.json
+  * run ```npm install``` to update the package-lock.json
   * tag a release on master with the version like ```git tag v1.1.9```
   * push this tag ```git push origin master --tags```
 * edit the project X package.json to reference this new version like ``` "common-frontend": "https://github.com/pemberton-rank/common-frontend.git#v1.1.9" ```
@@ -52,7 +53,7 @@ common-frontend provides you with the common methods for working with a user. If
 Let's say we want to add a new property to a User: sandwichPreference.
 
 * create an ExtendedUserActions in your project
-* add an ```updateProfile(profile)``` function to ```ExtendedUserActions``` 
+* add an ```updateProfile(profile)``` function to ```ExtendedUserActions```
 * we'll call this action, passing the entire User with their sandwichPreference whenever we want to update the user's sandwichPreference:
 
 ```
