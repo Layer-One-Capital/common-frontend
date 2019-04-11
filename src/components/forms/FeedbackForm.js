@@ -9,7 +9,7 @@ export default class FeedbackForm extends React.Component {
     helpLink: React.PropTypes.string.isRequired,
     buttonTextYes: React.PropTypes.string,
     buttonTextNo: React.PropTypes.string,
-    nonRepeating: React.PropTypes.bool,
+    repeating: React.PropTypes.bool,
     storeKey: React.PropTypes.string,
     onMount: React.PropTypes.func,
     onAnswer: React.PropTypes.func,
@@ -19,15 +19,15 @@ export default class FeedbackForm extends React.Component {
   static defaultProps = {
     buttonTextYes: 'Yes',
     buttonTextNo: 'No, I need help',
-    nonRepeating: false,
+    repeating: false,
     className: ''
   }
 
   constructor(props) {
     super(props)
 
-    this.nonRepeating = props.nonRepeating && !!props.storeKey
-    this.state = { dismissed: this.nonRepeating && localStorage.getItem(props.storeKey) === DISMISSED_VAL }
+    this.preserveDimissStatus = !props.repeating && !!props.storeKey
+    this.state = { dismissed: this.preserveDimissStatus && localStorage.getItem(props.storeKey) === DISMISSED_VAL }
   }
 
   componentWillMount() {
@@ -38,7 +38,7 @@ export default class FeedbackForm extends React.Component {
     const { storeKey, onAnswer } = this.props
 
     this.setState({ dismissed: true })
-    if (answer === 'yes' && this.nonRepeating) localStorage.setItem(storeKey, DISMISSED_VAL)
+    if (answer === 'yes' && this.preserveDimissStatus) localStorage.setItem(storeKey, DISMISSED_VAL)
 
     onAnswer && onAnswer(answer)
   }
