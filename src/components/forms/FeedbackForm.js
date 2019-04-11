@@ -1,0 +1,70 @@
+import React from 'react'
+import { Button } from 'components'
+
+const DISMISSED_VAL = 'dismissed'
+
+export default class FeedbackForm extends React.Component {
+  static propTypes = {
+    question: React.PropTypes.string.isRequired,
+    helpLink: React.PropTypes.string.isRequired,
+    buttonTextYes: React.PropTypes.string,
+    buttonTextNo: React.PropTypes.string,
+    nonRepeating: React.PropTypes.bool,
+    storeKey: React.PropTypes.string,
+    onMount: React.PropTypes.func,
+    onAnswer: React.PropTypes.func,
+    className: React.PropTypes.string
+  }
+
+  static defaultProps = {
+    buttonTextYes: 'Yes',
+    buttonTextNo: 'No, I need help',
+    nonRepeating: false,
+    className: ''
+  }
+
+  constructor(props) {
+    super(props)
+
+    this.nonRepeating = props.nonRepeating && !!props.storeKey
+    this.state = { dismissed: this.nonRepeating && localStorage.getItem(props.storeKey) === DISMISSED_VAL }
+  }
+
+  componentWillMount() {
+    this.props.onMount && this.props.onMount()
+  }
+
+  handleClick(answer) {
+    const { storeKey, onAnswer } = this.props
+
+    this.setState({ dismissed: true })
+    if (answer === 'yes' && this.nonRepeating) localStorage.setItem(storeKey, DISMISSED_VAL)
+
+    onAnswer && onAnswer(answer)
+  }
+
+  render() {
+    const { question, helpLink, buttonTextYes, buttonTextNo, className } = this.props
+
+    if (this.state.dismissed) return null
+    return (
+      <div className={`customer-feedback__form ${className}`}>
+        <h3>{question}</h3>
+
+        <Button
+          label={buttonTextYes}
+          buttonType="primary"
+          className="customer-feedback__form__btn--yes"
+          onTouchTap={() => this.handleClick('yes')}
+        />
+        <a target="_blank" href={helpLink} onClick={() => this.handleClick('no')}>
+          <Button
+            label={buttonTextNo}
+            buttonType="secondary"
+            className="customer-feedback__form__btn--no"
+          />
+        </a>
+      </div>
+    )
+  }
+}
