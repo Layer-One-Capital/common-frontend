@@ -38,7 +38,7 @@ export default class FeedbackForm extends React.Component {
     const { storeKey, onAnswer } = this.props
 
     this.setState({ dismissed: true })
-    if (answer === 'yes' && this.preserveDimissStatus) localStorage.setItem(storeKey, DISMISSED_VAL)
+    if (this.preserveDimissStatus) localStorage.setItem(storeKey, DISMISSED_VAL)
 
     onAnswer && onAnswer(answer)
   }
