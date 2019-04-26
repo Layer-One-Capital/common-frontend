@@ -1,6 +1,6 @@
 {
   "name": "common-frontend",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "",
   "main": "./lib",
   "author": "Pemberton Rank Ltd",
@@ -8,7 +8,7 @@
   "license": "MIT",
   "scripts": {
     "prepublish": "webpack --mode=build",
-    "build": "webpack --watch",
+    "build": "webpack",
     "babelbuild": "babel ./src --out-dir ./lib --source-maps --presets es2015,react --plugins babel-plugin-add-module-exports,babel-plugin-transform-decorators-legacy,babel-plugin-transform-class-properties --watch",
     "start": "webpack-dev-server --progress --colors --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
