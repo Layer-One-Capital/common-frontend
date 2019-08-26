@@ -6,7 +6,7 @@ const DISMISSED_VAL = 'dismissed'
 export default class FeedbackForm extends React.Component {
   static propTypes = {
     question: React.PropTypes.string.isRequired,
-    helpLink: React.PropTypes.string.isRequired,
+    helpLink: React.PropTypes.string,
     buttonTextYes: React.PropTypes.string,
     buttonTextNo: React.PropTypes.string,
     repeating: React.PropTypes.bool,
@@ -57,13 +57,22 @@ export default class FeedbackForm extends React.Component {
           className="customer-feedback__form__btn--yes"
           onTouchTap={() => this.handleClick('yes')}
         />
-        <a target="_blank" href={helpLink} onClick={() => this.handleClick('no')}>
+        {helpLink ? (
+          <a target="_blank" href={helpLink} onClick={() => this.handleClick('no')}>
+            <Button
+              label={buttonTextNo}
+              buttonType="secondary"
+              className="customer-feedback__form__btn--no"
+            />
+          </a>
+        ) : (
           <Button
             label={buttonTextNo}
             buttonType="secondary"
             className="customer-feedback__form__btn--no"
+            onClick={() => this.handleClick('no')}
           />
-        </a>
+        )}        
       </div>
     )
   }
