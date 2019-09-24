@@ -115,7 +115,7 @@ export default class Signin extends React.Component {
           onChange={::this.onInputChange} />
         <div style={{ display: 'block', width: '100%', height: '5px' }}></div>
         <div className="signin__form__actions">
-          <a onTouchTap={this.props.onSwitchMode.bind(this, Enum.authenticateMode.ForgottenPassword)} style={{ marginRight: '20px' }}>forgotten password</a>
+          <a onTouchTap={this.props.onSwitchMode.bind(this, Enum.authenticateMode.ForgottenPassword)} style={{ marginRight: '20px', display: 'none' }}>forgotten password --- purposefully disabled forgot password link since the API method isn't working (missing email views) ---</a>
           <RaisedButton disabled={this.state.loading === true} label="LOG IN" primary={true} onClick={::this.submitForm} />
         </div>
       </div>
