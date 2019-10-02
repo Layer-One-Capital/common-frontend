@@ -1,9 +1,7 @@
 import React from 'react'
 import { Button } from 'components'
-import Analytics from 'utils'
 
 const DISMISSED_VAL = 'dismissed'
-const POSITIVE_FEEDBACK_VAL = false;
 
 export default class FeedbackForm extends React.Component {
   static propTypes = {
@@ -22,17 +20,14 @@ export default class FeedbackForm extends React.Component {
     buttonTextYes: 'Yes',
     buttonTextNo: 'No, I need help',
     repeating: false,
-    className: '',
+    className: ''
   }
 
   constructor(props) {
     super(props)
 
     this.preserveDimissStatus = !props.repeating && !!props.storeKey
-    this.state = {
-      dismissed: this.preserveDimissStatus && localStorage.getItem(props.storeKey) === DISMISSED_VAL,
-      positiveFeedbackGiven: false
-    }
+    this.state = { dismissed: this.preserveDimissStatus && localStorage.getItem(props.storeKey) === DISMISSED_VAL }
   }
 
   componentWillMount() {
@@ -42,54 +37,17 @@ export default class FeedbackForm extends React.Component {
   handleClick(answer) {
     const { storeKey, onAnswer } = this.props
 
-    if(answer == 'yes') {
-      this.setState({ positiveFeedbackGiven: true })
-    }
-
     this.setState({ dismissed: true })
     if (this.preserveDimissStatus) localStorage.setItem(storeKey, DISMISSED_VAL)
 
     onAnswer && onAnswer(answer)
   }
 
-  closeFeedback(feedbackGiven) {
-    if(feedbackGiven) {
-      Analytics.track('Feedback Review Offered', {
-        willing_to_review: 'yes'
-      })
-    } else {
-      Analytics.track('Feedback Review Offered', {
-        willing_to_review: 'no'
-      })
-    }
+  render() {
+    const { question, helpLink, buttonTextYes, buttonTextNo, className } = this.props
 
-    this.setState({
-      positiveFeedbackGiven: false,
-      dismissed: true
-    })
-  }
-
-  renderForm() {
-    if(this.state.positiveFeedbackGiven) {
-      <div className={`customer-feedback__form ${className}`}>
-        <h3>That's great to hear. If you have a minute, would you be able to write us a short review?</h3>
-
-        <Button
-          label="Sure, I have a minute"
-          buttonType="primary"
-          className="customer-feedback__form__btn--yes"
-          onTouchTap={() => this.closeFeedback('yes')}
-        />
-
-        <Button
-          label={buttonTextNo}
-          buttonType="secondary"
-          className="customer-feedback__form__btn--no"
-          onClick={() => this.closeFeedback('no')}
-        />
-
-      </div>
-    } else {
+    if (this.state.dismissed) return null
+    return (
       <div className={`customer-feedback__form ${className}`}>
         <h3>{question}</h3>
 
@@ -116,16 +74,6 @@ export default class FeedbackForm extends React.Component {
           />
         )}
       </div>
-    }
-  }
-
-
-  render() {
-    const { question, helpLink, buttonTextYes, buttonTextNo, className } = this.props
-
-    if (this.state.dismissed && !this.positiveFeedbackGiven) return null
-    return (
-      {this.renderForm}
     )
   }
 }
