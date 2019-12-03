@@ -23,7 +23,7 @@ export default class UserActions {
     actions.setLoading(true)
     actions.setErrors({})
 
-    return UserSource.signin(params).then(({ session }) => {
+    return UserSource.signin(params).then((session ) => {
       actions.setLoading(false)
       actions.setErrors({})
       actions.setCurrentUser(session)
@@ -84,8 +84,8 @@ export default class UserActions {
           'registration method': 'form'
         })
       } else {
-        actions.setCurrentUser(data.session)
-        if (data.session.anonymous === false) {
+        actions.setCurrentUser(data)
+        if (data.anonymous === false) {
           Analytics.track('Registered', {
             'registration method': 'form'
           })
